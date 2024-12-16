@@ -641,6 +641,7 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="text-zinc-300 italic">"{testimonial.content}"</p>
+                  
                 </motion.div>
               ))}
             </div>
