@@ -111,12 +111,7 @@ const testimonials = [
   }
 ];
 
-const achievements = [
-  { title: "Industry Awards", count: "15+" },
-  { title: "Certified Professionals", count: "1000+" },
-  { title: "Countries Reached", count: "25+" },
-  { title: "Training Hours", count: "10000+" }
-];
+
 
 const trendingStyles = [
   { name: "Modern Fade", image: "/api/placeholder/300/400", likes: 1200 },
@@ -337,7 +332,6 @@ export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [year, setYear] = useState(currentYear)
   const [isBookingOpen, setIsBookingOpen] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -640,8 +634,8 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-zinc-300 italic">"{testimonial.content}"</p>
-                  
+                  <p className="text-zinc-300 italic"> `&quot;`;{testimonial.content} `&quot;`</p>
+
                 </motion.div>
               ))}
             </div>
