@@ -1,19 +1,22 @@
 "use client"
 
 import { 
-  MapPin, Calendar, Users, ShoppingBag, Handshake, MessageSquare, 
-  School, Star, Clock, Award, CheckCircle, ChevronRight, Play,
-  Heart, Trophy, Scissors, Instagram, Youtube, Mail, Camera, 
-  Droplet, SprayCan, BookOpen, Menu, X,
+  MapPin, Calendar, Users, 
+  School, Star, Clock, Award, CheckCircle, ChevronRight, 
+  Heart, Scissors, Mail, Camera, 
+  Droplet, SprayCan,
   Book,
   VolumeX,
-  Volume2
+  Volume2,
+  Youtube,
+  
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import VideoPlayer from '@/components/player/video'
+import { FaTiktok } from 'react-icons/fa'
 
 // Types
 interface Service {
@@ -48,7 +51,7 @@ const services: Service[] = [
   {
     icon: <SprayCan className="w-6 h-6" />,
     title: "Hair Treatment",
-    description: "Deep conditioning treatment",
+    description: "Keratin & others",
     price: "RM80",
     link: "/services/treatment",
     features: [
@@ -71,9 +74,9 @@ const services: Service[] = [
   },
   {
     icon: <Camera className="w-6 h-6" />,
-    title: "Style Documentation",
-    description: "Professional photos of your new style",
-    price: "RM30",
+    title: "Style Transformation",
+    description: "Professional video transformation of your new style",
+    price: "RM50",
     link: "/services/photo",
     features: [
       "Multiple angles",
@@ -204,51 +207,31 @@ const TrendingStyles = () => (
   </section>
 );
 
-// Add more variants at the top of your file
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
 
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const highlightVariants = {
-  initial: { opacity: 0, scale: 0.8 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.5, ease: "easeOut" }
-};
-
-const trustVariants = {
-  initial: { opacity: 0, x: -20 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.5 }
-};
 const InstagramFeed = () => {
-  const posts = Array(6).fill({
-    image: "/api/placeholder/300/300",
-    likes: Math.floor(Math.random() * 1000),
-  });
+  const posts = [
+    {  videoId: "7302781115259997442" },
+    {  videoId: "7372472565291322632" },
+    {   videoId: "7375085750888582401" },
+    {   videoId: "7101558868139969818" },
+    {  videoId: "7327594586128289025" },
+    {   videoId: "7435979036767079681" },
+  ];
 
   return (
     <section className="py-24 px-4 bg-zinc-900/50">
       <div className="container mx-auto">
-        <div className="flex justify-between items-center mb-16">
+        <div className="flex items-center justify-between">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Instagram Feed
+            Viral Tiktoks
           </h2>
           <Link 
-            href="https://instagram.com/brozkey"
-            className="flex items-center gap-2 text-white hover:text-zinc-300 transition-colors"
+            href="https://www.tiktok.com/@haziqhaimee" 
+            className="flex items-center gap-2 mt-4 text-white hover:underline"
+            target="_blank"
           >
-            <Instagram className="w-5 h-5" />
-            Follow us
+            <FaTiktok className="w-6 h-6" />
+            Follow on TikTok
           </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -260,22 +243,26 @@ const InstagramFeed = () => {
               viewport={{ once: true }}
               className="relative group"
             >
-              <Image
-                src={post.image}
-                alt="Instagram post"
-                width={300}
-                height={300}
-                className="rounded-xl"
-              />
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-xl">
-                <div className="flex items-center gap-2 text-white">
-                  <Heart className="w-5 h-5" />
-                  <span>{post.likes}</span>
-                </div>
-              </div>
+              <blockquote 
+                className="tiktok-embed" 
+                cite={`https://www.tiktok.com/@haziqhaimee/video/${post.videoId}`} 
+                data-video-id={post.videoId} 
+                style={{ maxWidth: '605px', minWidth: '325px' }}
+              >
+                <section>
+                  <a target="_blank" title="@haziqhaimee" href="https://www.tiktok.com/@haziqhaimee?refer=embed">@haziqhaimee</a> Haziq Brozkey 💇🏻‍♂️ 
+                  <a title="keratintreatment" target="_blank" href="https://www.tiktok.com/tag/keratintreatment?refer=embed">#keratintreatment</a> 
+                  <a title="dryhairtips" target="_blank" href="https://www.tiktok.com/tag/dryhairtips?refer=embed">#dryhairtips</a> 
+                  <a title="blondesbarber" target="_blank" href="https://www.tiktok.com/tag/blondesbarber?refer=embed">#blondesbarber</a> 
+                  <a target="_blank" title="♬ Yasashi - CXSPER" href="https://www.tiktok.com/music/Yasashi-7304653959367887648?refer=embed">♬ Yasashi - CXSPER</a>
+                </section>
+              </blockquote>
+              <script async src="https://www.tiktok.com/embed.js"></script>
+              
             </motion.div>
           ))}
         </div>
+        
       </div>
     </section>
   );
@@ -458,7 +445,7 @@ export default function Home() {
       </button>
       <div className="flex items-center gap-2 text-white">
         <span className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
-          Starting from RM80
+          Starting from RM180
         </span>
         <span className="text-zinc-400">|</span>
         <Link
@@ -499,13 +486,13 @@ export default function Home() {
     <div className="space-y-6">
       <h3 className="text-2xl font-semibold mb-4 text-white">Haziq Haimee</h3>
       <p className="text-zinc-300 text-lg leading-relaxed mb-6">
-        Professional hair stylist and barber with over 7 years of experience, specializing in men's dry hair treatments and keratin procedures. Creator of the viral Hairducation series and passionate educator in the field of men's grooming.
+        Professional hair stylist and barber with over 7 years of experience, specializing in men`&apos;`s dry hair treatments and keratin procedures. Creator of the viral Hairducation series and passionate educator in the field of men`&apos;`s grooming.
       </p>
       <div className="space-y-4">
         <div className="flex items-center gap-4 p-4 rounded-lg bg-zinc-900/50 backdrop-blur-xl border border-zinc-800">
           <Award className="w-8 h-8 text-white" />
           <div>
-            <h4 className="font-semibold text-white">Expert in Men's Hair Care</h4>
+            <h4 className="font-semibold text-white">Expert in Men`&apos;`s Hair Care</h4>
             <p className="text-sm text-zinc-400">Specialized in modern techniques</p>
           </div>
         </div>
@@ -549,7 +536,7 @@ export default function Home() {
       The Journey
     </h2>
     <p className="text-zinc-400 text-center mb-12 text-lg">
-      Follow BrozKey's path in the #barberlife, from passion to profession
+      Follow BrozKey`&apos;`s path in the #barberlife, from passion to profession
     </p>
     
     <motion.div
@@ -663,7 +650,7 @@ export default function Home() {
         {/* Instagram Feed Section */}
         <InstagramFeed />
   
-        {/* Achievements Section */}
+        {/* Achievements Section
         <section className="py-24 px-4">
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
@@ -686,7 +673,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
   
         {/* Contact Section - Enhanced */}
         <section className="py-24 px-4 bg-gradient-to-b from-zinc-900 to-black">
@@ -694,8 +681,29 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
               Contact Us
             </h2>
+            <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="rounded-lg bg-zinc-800/20 backdrop-blur-xl border border-zinc-700/30 mb-10"
+                >
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.758689152256!2d101.6041826!3d3.1581964999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4f064718b02d%3A0x699f8f65c73cb331!2sHair%20Library!5e0!3m2!1sen!2smy!4v1734364514760!5m2!1sen!2smy" 
+                    width="1250" 
+                    height="350" 
+                    style={{ border: 0 }} 
+                    allowFullScreen 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </motion.div>
             <div className="grid md:grid-cols-2 gap-12">
+              
               <div className="space-y-8">
+                {/* Embed Map */}
+               
+                
+                {/* Contact Details */}
                 <motion.div 
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -705,7 +713,7 @@ export default function Home() {
                   <MapPin className="w-8 h-8 text-white" />
                   <div>
                     <h4 className="font-semibold text-white">Location</h4>
-                    <p className="text-zinc-400">Kuala Lumpur, Malaysia</p>
+                    <p className="text-zinc-400">2nd Floor, 21, Jalan PJU 7/7a, Mutiara Damansara, 47800 Petaling Jaya, Selangor, Malaysia</p>
                   </div>
                 </motion.div>
                 <motion.div 
@@ -729,41 +737,41 @@ export default function Home() {
                   <Clock className="w-8 h-8 text-white" />
                   <div>
                     <h4 className="font-semibold text-white">Operating Hours</h4>
-                    <p className="text-zinc-400">10AM - 8PM</p>
+                    <p className="text-zinc-400">10AM - 9PM</p>
                   </div>
                 </motion.div>
               </div>
               <motion.form 
-  initial={{ opacity: 0, x: 20 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  viewport={{ once: true }}
-  className="space-y-6" 
-  onSubmit={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
->
-  <div className="space-y-4">
-    <input 
-      type="text" 
-      placeholder="Name" 
-      className="w-full p-4 rounded-lg bg-zinc-800/20 backdrop-blur-xl border border-zinc-700/30 focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all outline-none text-white placeholder:text-zinc-500"
-    />
-    <input 
-      type="email" 
-      placeholder="Email" 
-      className="w-full p-4 rounded-lg bg-zinc-800/20 backdrop-blur-xl border border-zinc-700/30 focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all outline-none text-white placeholder:text-zinc-500"
-    />
-    <textarea 
-      placeholder="Message" 
-      rows={4}
-      className="w-full p-4 rounded-lg bg-zinc-800/20 backdrop-blur-xl border border-zinc-700/30 focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all outline-none resize-none text-white placeholder:text-zinc-500"
-    />
-  </div>
-  <button 
-    type="submit" 
-    className="w-full bg-white text-black px-8 py-4 rounded-lg hover:bg-zinc-200 transition-all transform hover:scale-105 shadow-lg"
-  >
-    Send Message
-  </button>
-</motion.form>
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-6" 
+                onSubmit={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
+              >
+                <div className="space-y-4">
+                  <input 
+                    type="text" 
+                    placeholder="Name" 
+                    className="w-full p-4 rounded-lg bg-zinc-800/20 backdrop-blur-xl border border-zinc-700/30 focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all outline-none text-white placeholder:text-zinc-500"
+                  />
+                  <input 
+                    type="email" 
+                    placeholder="Email" 
+                    className="w-full p-4 rounded-lg bg-zinc-800/20 backdrop-blur-xl border border-zinc-700/30 focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all outline-none text-white placeholder:text-zinc-500"
+                  />
+                  <textarea 
+                    placeholder="Message" 
+                    rows={4}
+                    className="w-full p-4 rounded-lg bg-zinc-800/20 backdrop-blur-xl border border-zinc-700/30 focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all outline-none resize-none text-white placeholder:text-zinc-500"
+                  />
+                </div>
+                <button 
+                  type="submit" 
+                  className="w-full bg-white text-black px-8 py-4 rounded-lg hover:bg-zinc-200 transition-all transform hover:scale-105 shadow-lg"
+                >
+                  Send Message
+                </button>
+              </motion.form>
             </div>
           </div>
         </section>

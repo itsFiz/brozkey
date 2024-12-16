@@ -5,17 +5,10 @@ import Link from 'next/link'
 import { 
   ChevronDown, 
   School, 
-  ShoppingBag, 
   Users, 
   Calendar, 
-  MessageSquare, 
   Menu,
   X,
-  Search,
-  Book,
-  Award,
-  MapPin,
-  Phone,
   Scissors
 } from 'lucide-react'
 

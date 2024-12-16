@@ -1,7 +1,7 @@
 "use client"
 
 import { 
-  Scissors, Package, Camera, Wind, 
+  Scissors, Package, Camera, 
   Droplet,  Package2, Star, Zap, Search,
   ShoppingBag
 } from 'lucide-react'
