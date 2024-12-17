@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import VideoPlayer from '@/components/player/video'
 import { FaTiktok } from 'react-icons/fa'
