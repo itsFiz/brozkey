@@ -98,14 +98,14 @@ const testimonials = [
   {
     name: "John Doe",
     role: "Master Barber",
-    image: "/api/placeholder/100/100",
+    image: "/images/placeholder.jpg",
     content: "BarberCraft Academy transformed my approach to barbering. The techniques and business insights are invaluable.",
     rating: 5
   },
   {
     name: "Jane Smith",
     role: "Salon Owner",
-    image: "/api/placeholder/100/100",
+    image: "/images/placeholder.jpg",
     content: "The community and support system here is incredible. It's more than just education, it's a family.",
     rating: 5
   }
@@ -114,9 +114,9 @@ const testimonials = [
 
 
 const trendingStyles = [
-  { name: "Modern Fade", image: "/api/placeholder/300/400", likes: 1200 },
-  { name: "Textured Crop", image: "/api/placeholder/300/400", likes: 980 },
-  { name: "Classic Pompadour", image: "/api/placeholder/300/400", likes: 850 }
+  { name: "Mullet", image: "/images/mullet.jpg", likes: 1200 },
+  { name: "Textured Quiff", image: "/images/texturedquiff.webp", likes: 980 },
+  { name: "Buzz Cut", image: "/images/buzzcut.webp", likes: 850 }
 ];
 
 const ServiceCard = ({ service }: { service: Service }) => (
@@ -634,7 +634,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-zinc-300 italic"> `&quot;`;{testimonial.content} `&quot;`</p>
+                  <p className="text-zinc-300 italic"> &quot;{testimonial.content}&quot;</p>
 
                 </motion.div>
               ))}
@@ -773,8 +773,18 @@ export default function Home() {
   
         {/* Footer */}
         <footer className="py-16 px-4 border-t border-zinc-800 bg-black">
-          <div className="container mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+          <div className="container mx-auto flex items-center">
+            {/* Logo Section */}
+            <div className="mr-14">
+              <Image 
+                src="/images/brozkeylandscape.png" // Update with the correct path to your logo
+                alt="BrozKey Logo"
+                width={200} // Adjust width as needed
+                height={120} // Adjust height as needed
+                className="object-contain"
+              />
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 flex-grow">
               <div>
                 <h4 className="font-semibold mb-6 text-white">Academy</h4>
                 <ul className="space-y-4">
@@ -808,10 +818,11 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-            <div className="mt-16 pt-8 border-t border-zinc-800 text-center text-zinc-400">
+           
+          </div>
+          <div className="mt-16 pt-8 border-t border-zinc-800 text-center text-zinc-400">
               <p>&copy; {year} BrozKey. All rights reserved.</p>
             </div>
-          </div>
         </footer>
   
         {/* Booking Modal */}
