@@ -120,6 +120,7 @@ const VideoPlayer = () => {
     >
       <video 
         ref={videoRef}
+        playsInline
         className="w-full h-full object-cover"
         src="/videos/brozkeyvlog.mp4"
         poster="/api/placeholder/1920/1080"
