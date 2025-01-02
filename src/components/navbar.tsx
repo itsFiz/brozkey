@@ -90,12 +90,12 @@ export default function Navbar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <img src="/images/brozkeyb.png" alt="BrozKey Logo" className="h-10" />
               <Link 
                 href="/" 
-                className="text-2xl font-bold text-white ml-1"
+                className="flex items-center text-2xl font-bold text-white ml-1"
               >
-                BrozKey
+                <img src="/images/brozkeyb.png" alt="BrozKey Logo" className="h-10" />
+                <span className="ml-2">BrozKey</span>
               </Link>
             </div>
 
