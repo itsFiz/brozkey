@@ -122,7 +122,7 @@ const VideoPlayer = () => {
         ref={videoRef}
         playsInline
         className="w-full h-full object-cover"
-        src="/videos/brozkeyvlog.mp4"
+        src="/videos/brozkeystory.mp4"
         poster="/api/placeholder/1920/1080"
         onClick={togglePlay}
       >
@@ -136,7 +136,7 @@ const VideoPlayer = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: showControls ? 1 : 0, scale: 1 }}
         onClick={togglePlay}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all transform hover:scale-110"
+        className="absolute inset-0 flex items-center justify-center m-auto w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all hover:scale-110"
       >
         {isPlaying ? (
           <Pause className="w-8 h-8 text-white" />

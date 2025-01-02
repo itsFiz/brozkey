@@ -9,7 +9,9 @@ import {
   Calendar, 
   Menu,
   X,
-  Scissors
+  Scissors,
+  Briefcase,
+  Phone
 } from 'lucide-react'
 
 export default function Navbar() {
@@ -39,6 +41,7 @@ export default function Navbar() {
       label: "Academy",
       icon: <School className="w-4 h-4" />,
       items: [
+        { label: "Keratin Ambush", href: "/academy/keratinambush", description: "Accessible and comprehensive education on keratin treatments" },
         { label: "BarberCraft Courses", href: "/academy/courses", description: "Professional barber education" },
         { label: "Certification", href: "/academy/certification", description: "Industry recognized certificates" },
         { label: "Mentorship", href: "/academy/mentorship", description: "One-on-one training" },
@@ -54,6 +57,24 @@ export default function Navbar() {
         { label: "Forum", href: "/community/forum", description: "Connect with barbers" },
         { label: "Blog", href: "/community/blog", description: "Tips & tutorials" },
       ]
+    },
+    careers: {
+      label: "Careers",
+      icon: <Briefcase className="w-4 h-4" />,
+      items: [
+        { label: "Job Openings", href: "/careers/job-openings", description: "Explore current job opportunities" },
+        { label: "Internships", href: "/careers/internships", description: "Learn about internship programs" },
+        { label: "Life at BrozKey", href: "/careers/life-at-brozkey", description: "Discover our company culture" },
+      ]
+    },
+    contact: {
+      label: "Contact",
+      icon: <Phone className="w-4 h-4" />,
+      items: [
+        { label: "Customer Support", href: "/contact/support", description: "Get help with your inquiries" },
+        { label: "Feedback", href: "/contact/feedback", description: "Share your thoughts with us" },
+        { label: "Location", href: "/contact/location", description: "Find our physical location" },
+      ]
     }
   }
 
@@ -68,12 +89,15 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link 
-              href="/" 
-              className="text-2xl font-bold text-white"
-            >
-              BrozKey
-            </Link>
+            <div className="flex items-center">
+              <img src="/images/brozkeyb.png" alt="BrozKey Logo" className="h-10" />
+              <Link 
+                href="/" 
+                className="text-2xl font-bold text-white ml-1"
+              >
+                BrozKey
+              </Link>
+            </div>
 
             <div className="hidden md:flex items-center gap-8">
               {Object.entries(menuItems).map(([key, item]) => (

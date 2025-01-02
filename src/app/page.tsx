@@ -96,14 +96,14 @@ const stats = [
 
 const testimonials = [
   {
-    name: "John Doe",
+    name: "Karim",
     role: "Master Barber",
     image: "/images/placeholder.jpg",
     content: "BarberCraft Academy transformed my approach to barbering. The techniques and business insights are invaluable.",
     rating: 5
   },
   {
-    name: "Jane Smith",
+    name: "Ahmad",
     role: "Salon Owner",
     image: "/images/placeholder.jpg",
     content: "The community and support system here is incredible. It's more than just education, it's a family.",
@@ -326,7 +326,54 @@ const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   );
 };
 
+// Example partners data
+const partners = [
+  { name: "MyBarber", logo: "/images/mybarber.png" },
+  { name: "RetroBee", logo: "/images/retrobee.png" },
+  { name: "SneakerLah", logo: "/images/sneakerlah.png" },
+  { name: "Tuft International", logo: "/images/tuftint.png" },
+];
 
+// New FAQItem component
+const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="p-4 rounded-lg bg-zinc-800/20">
+      <div className="flex justify-between items-center cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+        <h4 className="font-semibold text-white">{question}</h4>
+        <span className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+          <ChevronRight className="w-5 h-5 text-white" />
+        </span>
+      </div>
+      {isOpen && <p className="text-zinc-400 mt-2">{answer}</p>}
+    </div>
+  );
+};
+
+// FAQ data
+const faqData = [
+  {
+    question: "What services do you offer?",
+    answer: "We offer a range of grooming services including haircuts, beard grooming, and hair treatments."
+  },
+  {
+    question: "How can I book an appointment?",
+    answer: "You can book an appointment through our website or by contacting us directly."
+  },
+  {
+    question: "What are your operating hours?",
+    answer: "Our operating hours are from 10 AM to 9 PM."
+  },
+  {
+    question: "Do you offer home service?",
+    answer: "Yes, we provide premium house call barber services at your location."
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept cash, credit cards, and mobile payment options."
+  },
+];
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -480,13 +527,13 @@ export default function Home() {
     <div className="space-y-6">
       <h3 className="text-2xl font-semibold mb-4 text-white">Haziq Haimee</h3>
       <p className="text-zinc-300 text-lg leading-relaxed mb-6">
-        Professional hair stylist and barber with over 7 years of experience, specializing in men`&apos;`s dry hair treatments and keratin procedures. Creator of the viral Hairducation series and passionate educator in the field of men`&apos;`s grooming.
+        Professional hair stylist and barber with over 7 years of experience, specializing in men&apos;s dry hair treatments and keratin procedures. Creator of the viral Hairducation series and passionate educator in the field of men&apos;s grooming.
       </p>
       <div className="space-y-4">
         <div className="flex items-center gap-4 p-4 rounded-lg bg-zinc-900/50 backdrop-blur-xl border border-zinc-800">
           <Award className="w-8 h-8 text-white" />
           <div>
-            <h4 className="font-semibold text-white">Expert in Men`&apos;`s Hair Care</h4>
+            <h4 className="font-semibold text-white">Expert in Men&apos;s Hair Care</h4>
             <p className="text-sm text-zinc-400">Specialized in modern techniques</p>
           </div>
         </div>
@@ -530,7 +577,7 @@ export default function Home() {
       The Journey
     </h2>
     <p className="text-zinc-400 text-center mb-12 text-lg">
-      Follow BrozKey`&apos;`s path in the #barberlife, from passion to profession
+      Follow BrozKey&apos;s path in the #barberlife, from passion to profession
     </p>
     
     <motion.div
@@ -544,13 +591,13 @@ export default function Home() {
     
     <div className="mt-8 flex justify-center gap-4">
       <Link
-        href="https://www.tiktok.com/@brozkey"
+        href="https://www.tiktok.com/@haziqhaimee"
         className="flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900/50 backdrop-blur-xl border border-zinc-800 hover:bg-zinc-800/50 transition-all"
       >
         <span className="text-white">Follow on TikTok</span>
       </Link>
       <Link
-        href="https://www.youtube.com/@brozkey"
+        href="https://www.youtube.com/@BrozKeys"
         className="flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900/50 backdrop-blur-xl border border-zinc-800 hover:bg-zinc-800/50 transition-all"
       >
         <Youtube className="w-5 h-5 text-white" />
@@ -597,7 +644,30 @@ export default function Home() {
             </div>
           </div>
         </section>
-  
+  {/* Client Logos Section */}
+  <section className="py-24 px-4 bg-zinc-900/50">
+    <div className="container mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
+        Our Partners
+      </h2>
+      <div className="flex flex-wrap justify-center gap-8">
+        {partners.map((partner, index) => (
+          <div className="relative group" key={index}>
+            <Image 
+              src={partner.logo} 
+              alt={partner.name} 
+              width={150} 
+              height={100} 
+              className="object-contain transition-transform duration-300 transform group-hover:scale-110" 
+            />
+            <span className="absolute bottom-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {partner.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
         {/* Trending Styles Section */}
         <TrendingStyles />
   
@@ -645,30 +715,19 @@ export default function Home() {
         {/* Instagram Feed Section */}
         <InstagramFeed />
   
-        {/* Achievements Section
-        <section className="py-24 px-4">
+        {/* FAQ Section */}
+        <section className="py-24 px-4 bg-zinc-900/30 backdrop-blur-xl">
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
-              Our Achievements
+              Frequently Asked Questions
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-center p-8 rounded-2xl bg-zinc-900/50 backdrop-blur-xl border border-zinc-800 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105"
-                >
-                  <p className="text-3xl font-bold mb-2 text-white">
-                    {achievement.count}
-                  </p>
-                  <p className="text-zinc-400">{achievement.title}</p>
-                </motion.div>
+            <div className="space-y-4">
+              {faqData.map((faq, index) => (
+                <FAQItem key={index} question={faq.question} answer={faq.answer} />
               ))}
             </div>
           </div>
-        </section> */}
+        </section>
   
         {/* Contact Section - Enhanced */}
         <section className="py-24 px-4 bg-gradient-to-b from-zinc-900 to-black">
@@ -720,7 +779,7 @@ export default function Home() {
                   <Mail className="w-8 h-8 text-white" />
                   <div>
                     <h4 className="font-semibold text-white">Email</h4>
-                    <p className="text-zinc-400">contact@brozkey.com</p>
+                    <a href="mailto:mascutz@brozkey.com" className="text-zinc-400 hover:underline">mascutz@brozkey.com</a>
                   </div>
                 </motion.div>
                 <motion.div 
@@ -771,13 +830,27 @@ export default function Home() {
           </div>
         </section>
   
+        {/* Newsletter Section */}
+        <section className="py-24 px-4 bg-zinc-900/30">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Subscribe to Our Newsletter
+            </h2>
+            <p className="text-zinc-400 mb-8">Get the latest updates and exclusive offers.</p>
+            <form className="flex justify-center">
+              <input type="email" placeholder="Enter your email" className="p-3 rounded-l-lg bg-black/20 border border-zinc-800 text-white placeholder:text-zinc-500" />
+              <button type="submit" className="px-4 py-3 rounded-r-lg bg-white text-black hover:bg-zinc-200 transition-all">Subscribe</button>
+            </form>
+          </div>
+        </section>
+  
         {/* Footer */}
         <footer className="py-16 px-4 border-t border-zinc-800 bg-black">
           <div className="container mx-auto flex items-center">
             {/* Logo Section */}
             <div className="mr-14">
               <Image 
-                src="/images/brozkeylandscape.png" // Update with the correct path to your logo
+                src="/images/brozkeywhite.png" // Update with the correct path to your logo
                 alt="BrozKey Logo"
                 width={200} // Adjust width as needed
                 height={120} // Adjust height as needed
@@ -821,7 +894,7 @@ export default function Home() {
            
           </div>
           <div className="mt-16 pt-8 border-t border-zinc-800 text-center text-zinc-400">
-              <p>&copy; {year} BrozKey. All rights reserved.</p>
+              <p>&copy; {year} BrozKey Studio. All rights reserved.</p>
             </div>
         </footer>
   
@@ -831,6 +904,8 @@ export default function Home() {
             <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
           )}
         </AnimatePresence>
+  
+        
       </main>
     );
   }
